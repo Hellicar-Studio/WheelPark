@@ -6,7 +6,6 @@ uniform sampler2DRect diffuseTexture;
 uniform sampler2DRect u_glitchMask;
 uniform float u_time;
 
-
 uniform float u_glitchScale = .5;
 uniform vec4 u_groupSize;
 uniform vec4 u_subGrid;
@@ -33,7 +32,7 @@ struct GlitchSeed {
 	float prob;
 };
 
-GlitchSeed glitchSeed(vec2 p, float speed) {
+GlitchSeed glitchSeed(vec2 p, float speed, float prob) {
 	float seedTime = floor(u_time * speed);
 	vec2 seed = vec2(
 		1. + mod(seedTime / 100., 100.),
@@ -41,7 +40,7 @@ GlitchSeed glitchSeed(vec2 p, float speed) {
 	) / 100.;
 	seed += p;
 
-	float prob = texture2DRect(u_glitchMask, p * vec2(1920, 1080)).r;
+	//float prob = texture2DRect(u_glitchMask, p * vec2(1920, 1080)).r;
 	//Hit hit = raymarchPixel(p, true);
 	//if (!hit.isBackground) {
 		//prob = hit.model.material.albedo.x;
@@ -111,11 +110,11 @@ void swapBlocks(inout vec2 xy, vec2 groupSize, vec2 subGrid, vec2 blockSize, vec
 
 // Static
 
-void staticNoise(inout vec2 p, vec2 groupSize, float grainSize, float contrast) {
-	GlitchSeed seedA = glitchSeed(glitchCoord(p, groupSize), 5.);
+void staticNoise(inout vec2 p, vec2 groupSize, float grainSize, float contrast, float prob) {
+	GlitchSeed seedA = glitchSeed(glitchCoord(p, groupSize), 5., prob);
 	seedA.prob *= .5;
 	if (shouldApply(seedA) == 1.) {
-		GlitchSeed seedB = glitchSeed(glitchCoord(p, vec2(grainSize)), 5.);
+		GlitchSeed seedB = glitchSeed(glitchCoord(p, vec2(grainSize)), 5., prob);
 		vec2 offset = vec2(rand(seedB.seed), rand(seedB.seed + .1));
 		offset = round(offset * 2. - 1.);
 		offset *= contrast;
@@ -125,8 +124,8 @@ void staticNoise(inout vec2 p, vec2 groupSize, float grainSize, float contrast) 
 
 // Freeze time
 
-void freezeTime(vec2 p, inout float time, vec2 groupSize, float speed) {
-	GlitchSeed seed = glitchSeed(glitchCoord(p, groupSize), speed);
+void freezeTime(vec2 p, inout float time, vec2 groupSize, float speed, float prob) {
+	GlitchSeed seed = glitchSeed(glitchCoord(p, groupSize), speed, prob);
 	//seed.prob *= .5;
 	if (shouldApply(seed) == 1.) {
 		float frozenTime = floor(time * speed) / speed;
@@ -139,7 +138,7 @@ void freezeTime(vec2 p, inout float time, vec2 groupSize, float speed) {
 // Glitch compositions
 // --------------------------------------------------------
 
-void glitchSwap(inout vec2 p) {
+void glitchSwap(inout vec2 p, float prob) {
 
 	vec2 pp = p;
 
@@ -156,7 +155,7 @@ void glitchSwap(inout vec2 p) {
 	subGrid = vec2(u_subGrid[0]); //2
 	blockSize = vec2(u_blockSize[0]); //0.2
 
-	seed = glitchSeed(glitchCoord(p, groupSize), speed);
+	seed = glitchSeed(glitchCoord(p, groupSize), speed, prob);
 	apply = shouldApply(seed);
 	swapBlocks(p, groupSize, subGrid, blockSize, seed.seed, apply);
 
@@ -164,7 +163,7 @@ void glitchSwap(inout vec2 p) {
 	subGrid = vec2(u_subGrid[1]); //3
 	blockSize = vec2(u_blockSize[1]); //1
 
-	seed = glitchSeed(glitchCoord(p, groupSize), speed);
+	seed = glitchSeed(glitchCoord(p, groupSize), speed, prob);
 	apply = shouldApply(seed);
 	swapBlocks(p, groupSize, subGrid, blockSize, seed.seed, apply);
 
@@ -172,7 +171,7 @@ void glitchSwap(inout vec2 p) {
 	subGrid = vec2(u_subGrid[2]); //6
 	blockSize = vec2(u_blockSize[2]); //1
 
-	seed = glitchSeed(glitchCoord(p, groupSize), speed);
+	seed = glitchSeed(glitchCoord(p, groupSize), speed, prob);
 	float apply2 = shouldApply(seed);
 	swapBlocks(p, groupSize, subGrid, blockSize, (seed.seed + 1.), apply * apply2);
 	swapBlocks(p, groupSize, subGrid, blockSize, (seed.seed + 2.), apply * apply2);
@@ -184,29 +183,29 @@ void glitchSwap(inout vec2 p) {
 	subGrid = vec2(u_subGrid[3]); //9, 2
 	blockSize = vec2(u_blockSize[3]); //6, 1
 
-	seed = glitchSeed(glitchCoord(p, groupSize), speed);
+	seed = glitchSeed(glitchCoord(p, groupSize), speed, prob);
 	apply = shouldApply(seed);
 	swapBlocks(p, groupSize, subGrid, blockSize, seed.seed, apply);
 }
 
-void glitchStatic(inout vec2 p) {
+void glitchStatic(inout vec2 p, float prob) {
 
 	// Static
 	//staticNoise(p, vec2(.25, .25/2.) * u_glitchScale, .005, 5.);
 
 	// 8-bit
-	staticNoise(p, vec2(.5, .25 / 2.) * u_glitchScale, .2 * u_glitchScale, 2.);
+	staticNoise(p, vec2(.5, .25 / 2.) * u_glitchScale, .2 * u_glitchScale, 2., prob);
 }
 
-void glitchTime(vec2 p, inout float time) {
-	freezeTime(p, time, vec2(.5) * u_glitchScale, 2.);
+void glitchTime(vec2 p, inout float time, float prob) {
+	freezeTime(p, time, vec2(.5) * u_glitchScale, 2., prob);
 }
 
-void glitchColor(vec2 p, inout vec3 color) {
+void glitchColor(vec2 p, inout vec3 color, float prob) {
 	vec2 groupSize = vec2(.75, .125) * u_glitchScale;
 	vec2 subGrid = vec2(0, 6);
 	float speed = 5.;
-	GlitchSeed seed = glitchSeed(glitchCoord(p, groupSize), speed);
+	GlitchSeed seed = glitchSeed(glitchCoord(p, groupSize), speed, prob);
 	seed.prob *= .3;
 	if (shouldApply(seed) == 1.) {
 		vec2 co = mod(p, groupSize) / groupSize;
@@ -226,12 +225,18 @@ void main() {
 	float time = u_time;
     //Getting coordinates of the current pixel in texture
     vec2 pos = texCoord / vec2(1920, 1080);
+	float prob = texture2DRect(u_glitchMask, pos * vec2(1920, 1080)).r;
 
-	glitchSwap(pos);
-	glitchTime(pos, time);
-	glitchStatic(pos);
+	glitchSwap(pos, prob);
+	glitchTime(pos, time, prob);
+	glitchStatic(pos, prob);
         
-	vec3 color = texture2DRect(diffuseTexture, pos * vec2(1920, 1080)).rgb;
+	vec3 color;
+	float cr = texture2DRect(diffuseTexture, pos * vec2(1920, 1080) + prob * 100).r;
+	float cg = texture2DRect(diffuseTexture, pos * vec2(1920, 1080)).g;
+	float cb = texture2DRect(diffuseTexture, pos * vec2(1920, 1080) - prob * 100).b;
+
+	color = vec3(cr, cg, cb);
 
 	//glitchColor(pos, color);
 	//color.rg = vec3(1.0) - color.rgb;
