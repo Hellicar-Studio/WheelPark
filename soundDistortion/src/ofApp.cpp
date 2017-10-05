@@ -68,6 +68,13 @@ void ofApp::draw(){
 	shader.setUniform4f("u_subGrid", subGrid);
 	shader.setUniform4f("u_blockSize", blockSize);
 	shader.setUniform1f("u_aberrationStrength", aberrationStrength);
+	shader.setUniform1f("u_badTVSpeed", badTVSpeed);
+	shader.setUniform1f("u_badTVAmount", badTVAmount);
+	shader.setUniform1f("u_badTVDistort", badTVDistort);
+	shader.setUniform1f("u_badTVDistort2", badTVDistort2);
+	shader.setUniform1f("u_badTVRollSpeed", badTVRollSpeed);
+
+
 		img.draw(0, 0, 1920, 1080);
 	shader.end();
 
