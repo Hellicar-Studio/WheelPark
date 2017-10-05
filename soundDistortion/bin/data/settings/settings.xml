@@ -3,4 +3,7 @@
 	<Group_Size>0.27551, 0.377551, 0.408163, 0.367347</Group_Size>
 	<Subgrid>2.19388, 1.73469, 1.87245, 2.79082</Subgrid>
 	<Block_Size>1.53061, 2.29592, 2.44898, 1.93878</Block_Size>
+<Glitch_Parameters/>
+	<Width>1</Width>
+	<Aberration_Strength>100</Aberration_Strength>
 </Glitch_Parameters>
