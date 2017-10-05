@@ -282,8 +282,18 @@ void main() {
 	glitchSwap(pos, prob);
 	glitchTime(pos, time, prob);
 	glitchStatic(pos, prob);
+
+	float timeBTV = time*u_badTVSpeed;
+	float yt = pos.y - timeBTV;
+	float offset = snoise(vec2(yt*3.0, 0.0))*0.2;
+	//offset = pow(offset*u_badTVDistort, 3.0) / u_badTVDistort;
+	offset += snoise(vec2(yt*50.0, 0.0))*u_badTVDistort2*0.001;
+	vec2 normalizedCoords = vec2(fract(pos.x + offset), fract(pos.y - time*u_badTVRollSpeed));
+
+	pos = mix(pos, normalizedCoords, u_badTVAmount*prob);
         
-	vec3 color;
+	vec3 color = vec3(0.0, 0.0, 0.0);
+	//color.rg = pos;
 	float cr = texture2DRect(diffuseTexture, pos * vec2(1920, 1080) + vec2(prob * u_aberrationStrength, 0.0)).r;
 	float cg = texture2DRect(diffuseTexture, pos * vec2(1920, 1080)).g;
 	float cb = texture2DRect(diffuseTexture, pos * vec2(1920, 1080) - vec2(prob * u_aberrationStrength, 0.0)).b;
