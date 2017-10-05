@@ -39,6 +39,8 @@ void ofApp::setup(){
 	gui.loadFromFile(settingsPath);
 
 	showGui = true;
+
+	ofHideCursor();
 }
 
 //--------------------------------------------------------------

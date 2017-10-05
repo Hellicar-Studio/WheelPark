@@ -9,12 +9,15 @@ varying vec2 texCoord;
 
 void main() {
     
-	vec2 mousePos = u_mousePos / vec2(1920, 1080);
-	vec2 pos = texCoord / vec2(1920, 1080);
+	vec2 mousePos = u_mousePos;
+	vec2 pos = texCoord;
 
-	float distX = abs(pos.x - mousePos.x);
+	//mousePos.x *= (1920 / 1080);
+	//mousePos.x *= 1920 / 1080;
 
-	float prob = smoothstep(0.2, 0.0, distX);
+	float dist = distance(pos, mousePos);
+
+	float prob = smoothstep(800, 0.0, dist);
 
     gl_FragColor = vec4(prob, 0.0, 0.0, 1.0);
 }
