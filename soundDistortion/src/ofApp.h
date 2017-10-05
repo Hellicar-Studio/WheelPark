@@ -23,12 +23,15 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-		ofxAutoReloadedShader shader;
+		ofxAutoReloadedShader glitchShader;
+		ofxAutoReloadedShader areaShader;
 		ofFbo buffer;
 		ofImage img;
 		ofImage probabilityFilter;
 
 		ofxPanel gui;
+
+		ofParameter<float> glitchSpeed;
 
 		ofParameterGroup glitchGroup;
 		ofParameter<float> glitchScale;

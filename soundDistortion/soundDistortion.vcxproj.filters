@@ -118,5 +118,11 @@
     <None Include="bin\data\shaders\glitch.vert">
       <Filter>data\shaders</Filter>
     </None>
+    <None Include="bin\data\shaders\area.frag">
+      <Filter>data\shaders</Filter>
+    </None>
+    <None Include="bin\data\shaders\area.vert">
+      <Filter>data\shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

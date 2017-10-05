@@ -211,6 +211,8 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="bin\data\shaders\area.frag" />
+    <None Include="bin\data\shaders\area.vert" />
     <None Include="bin\data\shaders\glitch.frag" />
     <None Include="bin\data\shaders\glitch.vert" />
   </ItemGroup>
