@@ -49,7 +49,7 @@ void ofApp::draw(){
 	shader.begin();
 	shader.setUniform1f("u_time", ofGetElapsedTimef());
 	shader.setUniformTexture("u_glitchMask", buffer, 1);
-	shader.setUniform1f("u_glitchScale", 0.5);
+	shader.setUniform1f("u_glitchScale", glitchScale);
 	shader.setUniform4f("u_groupSize", groupSize);
 	shader.setUniform4f("u_subGrid", subGrid);
 	shader.setUniform4f("u_blockSize", blockSize);
