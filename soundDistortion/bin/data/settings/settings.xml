@@ -7,14 +7,15 @@
 	<Width>1</Width>
 	<Aberration_Strength>100</Aberration_Strength>
 <Glitch>
-		<Scale>0.744898</Scale>
-		<Group_Size>0.0264473, 0.0733028, 0.10454, 0.0837151</Group_Size>
+		<Scale>1.71429</Scale>
+		<Group_Size>0.833403, 0.817784, 0.713661, 0.734486</Group_Size>
 		<Subgrid>7.14182, 6.06414, 6, 2.54998</Subgrid>
 		<Block_Size>6.82424, 1, 1, 2.08663</Block_Size>
 		<Width>0.75</Width>
+	<Speed>1.14796</Speed>
 	</Glitch>
 	<Chromatic_Aberration>
-		<Aberration_Strength>146.939</Aberration_Strength>
+		<Aberration_Strength>68.5714</Aberration_Strength>
 	</Chromatic_Aberration>
 	<Bad_TV>
 		<Distortion_1>6.93878</Distortion_1>
