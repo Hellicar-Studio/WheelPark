@@ -2,7 +2,9 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	glitchShader.load("glitchShaders/glitch");
+	glitchShader.load("Shaders/glitch");
+	areaShader.load("shaders/area");
+
 	img.load("ToyotaImage.png");
 	probabilityFilter.load("probGradientLine.jpg");
 	buffer.allocate(1920, 1080);
@@ -13,6 +15,8 @@ void ofApp::setup(){
 	glitchGroup.setName("Glitch");
 	aberrationGroup.setName("Chromatic Aberration");
 	badTVGroup.setName("Bad TV");
+
+	gui.add(glitchSpeed.set("Speed", 1.0, 0.0, 5.0));
 
 	glitchGroup.add(glitchScale.set("Scale", 0.5, 0.0, 2.0));
 	glitchGroup.add(groupSize.set("Group Size", ofVec4f(0.6, 0.8, 0.2, 1.0), ofVec4f(0.0), ofVec4f(1.0)));
@@ -44,37 +48,27 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	ofPushStyle();
 	buffer.begin();
-		ofSetColor(0);
-		ofDrawRectangle(0, 0, buffer.getWidth(), buffer.getHeight());
-		ofSetColor(255);
-		ofPushMatrix();
-		ofSetRectMode(OF_RECTMODE_CENTER);
-		ofTranslate(ofGetMouseX(), ofGetHeight() / 2);
-		ofScale(width, 1.0);
-		ofRotate(90);
-		probabilityFilter.draw(0, 0);
-		ofPopMatrix();
+		areaShader.begin();
+			areaShader.setUniform2f("u_mousePos", ofVec2f(ofGetMouseX(), ofGetMouseY()));
+			ofDrawRectangle(0, 0, buffer.getWidth(), buffer.getHeight());
+		areaShader.end();
 	buffer.end();
 
-	ofPopStyle();
 	ofSetColor(255);
 	glitchShader.begin();
-	glitchShader.setUniform1f("u_time", ofGetElapsedTimef());
-	glitchShader.setUniformTexture("u_glitchMask", buffer, 1);
-	glitchShader.setUniform1f("u_glitchScale", glitchScale);
-	glitchShader.setUniform4f("u_groupSize", groupSize);
-	glitchShader.setUniform4f("u_subGrid", subGrid);
-	glitchShader.setUniform4f("u_blockSize", blockSize);
-	glitchShader.setUniform1f("u_aberrationStrength", aberrationStrength);
-	glitchShader.setUniform1f("u_badTVSpeed", badTVSpeed);
-	glitchShader.setUniform1f("u_badTVAmount", badTVAmount);
-	glitchShader.setUniform1f("u_badTVDistort", badTVDistort);
-	glitchShader.setUniform1f("u_badTVDistort2", badTVDistort2);
-	glitchShader.setUniform1f("u_badTVRollSpeed", badTVRollSpeed);
-
-
+		glitchShader.setUniformTexture("u_glitchMask", buffer, 1);
+		glitchShader.setUniform1f("u_time", ofGetElapsedTimef() * glitchSpeed);
+		glitchShader.setUniform1f("u_glitchScale", glitchScale);
+		glitchShader.setUniform4f("u_groupSize", groupSize);
+		glitchShader.setUniform4f("u_subGrid", subGrid);
+		glitchShader.setUniform4f("u_blockSize", blockSize);
+		glitchShader.setUniform1f("u_aberrationStrength", aberrationStrength);
+		glitchShader.setUniform1f("u_badTVSpeed", badTVSpeed);
+		glitchShader.setUniform1f("u_badTVAmount", badTVAmount);
+		glitchShader.setUniform1f("u_badTVDistort", badTVDistort);
+		glitchShader.setUniform1f("u_badTVDistort2", badTVDistort2);
+		glitchShader.setUniform1f("u_badTVRollSpeed", badTVRollSpeed);
 		img.draw(0, 0, 1920, 1080);
 	glitchShader.end();
 

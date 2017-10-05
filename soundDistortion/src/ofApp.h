@@ -24,11 +24,14 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
 		ofxAutoReloadedShader glitchShader;
+		ofxAutoReloadedShader areaShader;
 		ofFbo buffer;
 		ofImage img;
 		ofImage probabilityFilter;
 
 		ofxPanel gui;
+
+		ofParameter<float> glitchSpeed;
 
 		ofParameterGroup glitchGroup;
 		ofParameter<float> glitchScale;
