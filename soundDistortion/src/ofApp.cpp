@@ -14,6 +14,7 @@ void ofApp::setup(){
 	aberrationGroup.setName("Chromatic Aberration");
 	badTVGroup.setName("Bad TV");
 
+	glitchGroup.add(glitchSpeed.set("Speed",1.0, 0.0, 5.0));
 	glitchGroup.add(glitchScale.set("Scale", 0.5, 0.0, 2.0));
 	glitchGroup.add(groupSize.set("Group Size", ofVec4f(0.6, 0.8, 0.2, 1.0), ofVec4f(0.0), ofVec4f(1.0)));
 	glitchGroup.add(subGrid.set("Subgrid", ofVec4f(2, 3, 6, 9), ofVec4f(1), ofVec4f(10)));
@@ -61,7 +62,7 @@ void ofApp::draw(){
 	ofPopStyle();
 	ofSetColor(255);
 	shader.begin();
-	shader.setUniform1f("u_time", ofGetElapsedTimef());
+	shader.setUniform1f("u_time", ofGetElapsedTimef() * glitchSpeed);
 	shader.setUniformTexture("u_glitchMask", buffer, 1);
 	shader.setUniform1f("u_glitchScale", glitchScale);
 	shader.setUniform4f("u_groupSize", groupSize);
