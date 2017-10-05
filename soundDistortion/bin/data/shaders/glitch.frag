@@ -6,6 +6,7 @@ uniform sampler2DRect diffuseTexture;
 uniform sampler2DRect u_glitchMask;
 uniform float u_time;
 
+uniform float u_aberrationStrength;
 uniform float u_glitchScale = .5;
 uniform vec4 u_groupSize;
 uniform vec4 u_subGrid;
@@ -232,9 +233,9 @@ void main() {
 	glitchStatic(pos, prob);
         
 	vec3 color;
-	float cr = texture2DRect(diffuseTexture, pos * vec2(1920, 1080) + prob * 100).r;
+	float cr = texture2DRect(diffuseTexture, pos * vec2(1920, 1080) + vec2(prob * u_aberrationStrength, 0.0)).r;
 	float cg = texture2DRect(diffuseTexture, pos * vec2(1920, 1080)).g;
-	float cb = texture2DRect(diffuseTexture, pos * vec2(1920, 1080) - prob * 100).b;
+	float cb = texture2DRect(diffuseTexture, pos * vec2(1920, 1080) - vec2(prob * u_aberrationStrength, 0.0)).b;
 
 	color = vec3(cr, cg, cb);
 

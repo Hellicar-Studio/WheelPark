@@ -16,6 +16,7 @@ void ofApp::setup(){
 	gui.add(subGrid.set("Subgrid", ofVec4f(2, 3, 6, 9), ofVec4f(1), ofVec4f(10)));
 	gui.add(blockSize.set("Block Size", ofVec4f(0.2, 1, 1, 6), ofVec4f(0), ofVec4f(10)));
 	gui.add(width.set("Width", 0.5, 0.0, 1.0));
+	gui.add(aberrationStrength.set("Aberration Strength", 100, 0.0, 1920));
 
 	gui.loadFromFile(settingsPath);
 
@@ -52,6 +53,7 @@ void ofApp::draw(){
 	shader.setUniform4f("u_groupSize", groupSize);
 	shader.setUniform4f("u_subGrid", subGrid);
 	shader.setUniform4f("u_blockSize", blockSize);
+	shader.setUniform1f("u_aberrationStrength", aberrationStrength);
 		img.draw(0, 0, 1920, 1080);
 	shader.end();
 

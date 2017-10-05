@@ -34,6 +34,7 @@ class ofApp : public ofBaseApp{
 		ofParameter<ofVec4f> subGrid; 
 		ofParameter<ofVec4f> blockSize;
 		ofParameter<float> width;
+		ofParameter<float> aberrationStrength;
 
 		bool showGui;
 };
