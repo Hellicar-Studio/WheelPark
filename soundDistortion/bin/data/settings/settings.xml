@@ -6,4 +6,21 @@
 <Glitch_Parameters/>
 	<Width>1</Width>
 	<Aberration_Strength>100</Aberration_Strength>
+<Glitch>
+		<Scale>0.5</Scale>
+		<Group_Size>0.6, 0.8, 0.2, 1</Group_Size>
+		<Subgrid>2, 3, 6, 9</Subgrid>
+		<Block_Size>0.2, 1, 1, 6</Block_Size>
+		<Width>0.5</Width>
+	</Glitch>
+	<Chromatic_Aberration>
+		<Aberration_Strength>100</Aberration_Strength>
+	</Chromatic_Aberration>
+	<Bad_TV>
+		<Distortion_1>0</Distortion_1>
+		<Distortion_2>0.5</Distortion_2>
+		<Speed>0.5</Speed>
+		<Roll_Speed>0.5</Roll_Speed>
+		<Amount>0.5</Amount>
+	</Bad_TV>
 </Glitch_Parameters>
