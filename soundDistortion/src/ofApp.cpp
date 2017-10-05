@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	shader.load("shaders/glitch");
+	glitchShader.load("glitchShaders/glitch");
 	img.load("ToyotaImage.png");
 	probabilityFilter.load("probGradientLine.jpg");
 	buffer.allocate(1920, 1080);
@@ -60,23 +60,23 @@ void ofApp::draw(){
 
 	ofPopStyle();
 	ofSetColor(255);
-	shader.begin();
-	shader.setUniform1f("u_time", ofGetElapsedTimef());
-	shader.setUniformTexture("u_glitchMask", buffer, 1);
-	shader.setUniform1f("u_glitchScale", glitchScale);
-	shader.setUniform4f("u_groupSize", groupSize);
-	shader.setUniform4f("u_subGrid", subGrid);
-	shader.setUniform4f("u_blockSize", blockSize);
-	shader.setUniform1f("u_aberrationStrength", aberrationStrength);
-	shader.setUniform1f("u_badTVSpeed", badTVSpeed);
-	shader.setUniform1f("u_badTVAmount", badTVAmount);
-	shader.setUniform1f("u_badTVDistort", badTVDistort);
-	shader.setUniform1f("u_badTVDistort2", badTVDistort2);
-	shader.setUniform1f("u_badTVRollSpeed", badTVRollSpeed);
+	glitchShader.begin();
+	glitchShader.setUniform1f("u_time", ofGetElapsedTimef());
+	glitchShader.setUniformTexture("u_glitchMask", buffer, 1);
+	glitchShader.setUniform1f("u_glitchScale", glitchScale);
+	glitchShader.setUniform4f("u_groupSize", groupSize);
+	glitchShader.setUniform4f("u_subGrid", subGrid);
+	glitchShader.setUniform4f("u_blockSize", blockSize);
+	glitchShader.setUniform1f("u_aberrationStrength", aberrationStrength);
+	glitchShader.setUniform1f("u_badTVSpeed", badTVSpeed);
+	glitchShader.setUniform1f("u_badTVAmount", badTVAmount);
+	glitchShader.setUniform1f("u_badTVDistort", badTVDistort);
+	glitchShader.setUniform1f("u_badTVDistort2", badTVDistort2);
+	glitchShader.setUniform1f("u_badTVRollSpeed", badTVRollSpeed);
 
 
 		img.draw(0, 0, 1920, 1080);
-	shader.end();
+	glitchShader.end();
 
 	if(showGui)
 		gui.draw();

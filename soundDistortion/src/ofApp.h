@@ -23,7 +23,7 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-		ofxAutoReloadedShader shader;
+		ofxAutoReloadedShader glitchShader;
 		ofFbo buffer;
 		ofImage img;
 		ofImage probabilityFilter;
