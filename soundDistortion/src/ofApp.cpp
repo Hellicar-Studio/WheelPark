@@ -10,13 +10,27 @@ void ofApp::setup(){
 	string settingsPath = "settings/settings.xml";
 
 	gui.setup("Glitch Parameters", settingsPath);
+	glitchGroup.setName("Glitch");
+	aberrationGroup.setName("Chromatic Aberration");
+	badTVGroup.setName("Bad TV");
 
-	gui.add(glitchScale.set("Scale", 0.5, 0.0, 2.0));
-	gui.add(groupSize.set("Group Size", ofVec4f(0.6, 0.8, 0.2, 1.0), ofVec4f(0.0), ofVec4f(1.0)));
-	gui.add(subGrid.set("Subgrid", ofVec4f(2, 3, 6, 9), ofVec4f(1), ofVec4f(10)));
-	gui.add(blockSize.set("Block Size", ofVec4f(0.2, 1, 1, 6), ofVec4f(0), ofVec4f(10)));
-	gui.add(width.set("Width", 0.5, 0.0, 1.0));
-	gui.add(aberrationStrength.set("Aberration Strength", 100, 0.0, 1920));
+	glitchGroup.add(glitchScale.set("Scale", 0.5, 0.0, 2.0));
+	glitchGroup.add(groupSize.set("Group Size", ofVec4f(0.6, 0.8, 0.2, 1.0), ofVec4f(0.0), ofVec4f(1.0)));
+	glitchGroup.add(subGrid.set("Subgrid", ofVec4f(2, 3, 6, 9), ofVec4f(1), ofVec4f(10)));
+	glitchGroup.add(blockSize.set("Block Size", ofVec4f(0.2, 1, 1, 6), ofVec4f(0), ofVec4f(10)));
+	glitchGroup.add(width.set("Width", 0.5, 0.0, 1.0));
+
+	aberrationGroup.add(aberrationStrength.set("Aberration Strength", 100, 0.0, 1920));
+
+	badTVGroup.add(badTVDistort.set("Distortion 1", 0, 0.0, 10));
+	badTVGroup.add(badTVDistort2.set("Distortion 2", 0.5, 0.0, 1.0));
+	badTVGroup.add(badTVSpeed.set("Speed", 0.5, 0.0, 1.0));
+	badTVGroup.add(badTVRollSpeed.set("Roll Speed", 0.5, 0.0, 1.0));
+	badTVGroup.add(badTVAmount.set("Amount", 0.5, 0.0, 1.0));
+
+	gui.add(glitchGroup);
+	gui.add(aberrationGroup);
+	gui.add(badTVGroup);
 
 	gui.loadFromFile(settingsPath);
 

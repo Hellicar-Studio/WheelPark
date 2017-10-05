@@ -29,12 +29,23 @@ class ofApp : public ofBaseApp{
 		ofImage probabilityFilter;
 
 		ofxPanel gui;
+
+		ofParameterGroup glitchGroup;
 		ofParameter<float> glitchScale;
 		ofParameter<ofVec4f> groupSize;
 		ofParameter<ofVec4f> subGrid; 
 		ofParameter<ofVec4f> blockSize;
 		ofParameter<float> width;
+
+		ofParameterGroup aberrationGroup;
 		ofParameter<float> aberrationStrength;
+
+		ofParameterGroup badTVGroup;
+		ofParameter<float> badTVDistort;
+		ofParameter<float> badTVDistort2;
+		ofParameter<float> badTVSpeed;
+		ofParameter<float> badTVRollSpeed;
+		ofParameter<float> badTVAmount;
 
 		bool showGui;
 };

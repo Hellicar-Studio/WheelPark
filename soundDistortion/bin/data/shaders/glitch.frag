@@ -12,6 +12,12 @@ uniform vec4 u_groupSize;
 uniform vec4 u_subGrid;
 uniform vec4 u_blockSize;
 
+uniform float u_badTVDistort;
+uniform float u_badTVDistort2;
+uniform float u_badTVSpeed;
+uniform float u_badTVRollSpeed;
+uniform float u_badTVAmount;
+
 varying vec2 texCoord;
 
 // --------------------------------------------------------
