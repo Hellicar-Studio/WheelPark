@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ProbabilityDrawer.h"
-
 #include "ofMain.h"
 
 class Stepper : public ProbabilityDrawer {

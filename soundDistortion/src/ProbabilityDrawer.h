@@ -8,6 +8,7 @@ public:
 	ofFbo* buffer;
 	void drawToBuffer();
 	virtual void draw();
+	virtual void update();
 	void clearBuffer();
 	void setBuffer(ofFbo* _buffer) { buffer = _buffer; };
 private:

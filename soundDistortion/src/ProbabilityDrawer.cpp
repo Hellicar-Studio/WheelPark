@@ -11,6 +11,10 @@ void ProbabilityDrawer::drawToBuffer() {
 
 }
 
+void ProbabilityDrawer::update() {
+
+}
+
 void ProbabilityDrawer::draw() {
 
 }
