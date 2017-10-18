@@ -4,6 +4,7 @@
 void ofApp::setup(){
 	glitchShader.load("Shaders/glitch");
 	areaShader.load("shaders/area");
+	verticalBlur.load("shaders/verticalBlur");
 
 	img.load("ToyotaImage.png");
 	probabilityFilter.load("probGradientLine.jpg");
@@ -40,26 +41,37 @@ void ofApp::setup(){
 
 	showGui = true;
 
-	ofHideCursor();
+	stepper.setup(1920, 1080);
+
+	//ofHideCursor();
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-
+	stepper.update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	buffer.begin();
-		areaShader.begin();
-			areaShader.setUniform2f("u_mousePos", ofVec2f(ofGetMouseX(), ofGetMouseY()));
-			ofDrawRectangle(0, 0, buffer.getWidth(), buffer.getHeight());
-		areaShader.end();
-	buffer.end();
+	stepper.drawToBuffer();
+
+	//buffer.begin();
+	////verticalBlur.begin();
+	////verticalBlur.setUniform1f("blurAmnt", 500.0);
+	////verticalBlur.setUniformTexture("diffuseTexture", stepper.buffer.getTexture(), 0);
+	////ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
+	//verticalBlur.end();
+	//	areaShader.begin();
+	//		areaShader.setUniform2f("u_mousePos", ofVec2f(ofGetMouseX(), ofGetMouseY()));
+	//		ofDrawRectangle(0, 0, buffer.getWidth(), buffer.getHeight());
+	//	areaShader.end();
+	//buffer.end();
+
+	//stepper.drawToBuffer();
 
 	ofSetColor(255);
 	glitchShader.begin();
-		glitchShader.setUniformTexture("u_glitchMask", buffer, 1);
+		glitchShader.setUniformTexture("u_glitchMask", stepper.buffer, 1);
 		glitchShader.setUniform1f("u_time", ofGetElapsedTimef() * glitchSpeed);
 		glitchShader.setUniform1f("u_glitchScale", glitchScale);
 		glitchShader.setUniform4f("u_groupSize", groupSize);
@@ -74,10 +86,12 @@ void ofApp::draw(){
 		img.draw(0, 0, 1920, 1080);
 	glitchShader.end();
 
+	//stepper.draw();
+
 	if(showGui)
 		gui.draw();
 	//ofSetColor(255, 255, 255, 127);
-	//buffer.draw(0, 0);
+	buffer.draw(0, 0);
 }
 
 //--------------------------------------------------------------

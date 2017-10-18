@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxAutoReloadedShader.h"
 #include "ofxGui.h"
+#include "Stepper.h"
 
 class ofApp : public ofBaseApp{
 
@@ -25,9 +26,12 @@ class ofApp : public ofBaseApp{
 
 		ofxAutoReloadedShader glitchShader;
 		ofxAutoReloadedShader areaShader;
+		ofxAutoReloadedShader verticalBlur;
 		ofFbo buffer;
 		ofImage img;
 		ofImage probabilityFilter;
+
+		Stepper stepper;
 
 		ofxPanel gui;
 

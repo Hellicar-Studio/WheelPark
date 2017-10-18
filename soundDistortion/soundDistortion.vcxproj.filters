@@ -37,6 +37,9 @@
     <ClCompile Include="..\..\..\addons\ofxNestedFileLoader\src\ofxNestedFileLoader.cpp">
       <Filter>addons\ofxNestedFileLoader\src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Stepper.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -106,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\addons\ofxNestedFileLoader\src\ofxNestedFileLoader.h">
       <Filter>addons\ofxNestedFileLoader\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Stepper.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
