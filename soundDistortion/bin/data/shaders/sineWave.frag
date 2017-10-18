@@ -34,7 +34,7 @@ void main() {
 
 	//float dist = distance(pos, mousePos);
 
-	float prob = smoothstep(a - 0.5, a, (1.0 - pos.y));
+	float prob = smoothstep(a - u_blur , a + u_blur, (1.0 - pos.y));
 
 	prob = 1.0 - prob;
 
