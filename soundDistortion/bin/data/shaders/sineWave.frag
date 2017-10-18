@@ -38,6 +38,8 @@ void main() {
 
 	prob = 1.0 - prob;
 
+	prob *= 0.7;
+
 
     gl_FragColor = vec4(prob, 0.0, 0.0, 1.0);
 }
