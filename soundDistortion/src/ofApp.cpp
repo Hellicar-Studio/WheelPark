@@ -41,6 +41,7 @@ void ofApp::setup(){
 
 	showGui = true;
 
+	stepper.setBuffer(&buffer);
 	stepper.setup(1920, 1080);
 
 	//ofHideCursor();
@@ -71,7 +72,7 @@ void ofApp::draw(){
 
 	ofSetColor(255);
 	glitchShader.begin();
-		glitchShader.setUniformTexture("u_glitchMask", stepper.buffer, 1);
+		glitchShader.setUniformTexture("u_glitchMask", *(stepper.buffer), 1);
 		glitchShader.setUniform1f("u_time", ofGetElapsedTimef() * glitchSpeed);
 		glitchShader.setUniform1f("u_glitchScale", glitchScale);
 		glitchShader.setUniform4f("u_groupSize", groupSize);
@@ -91,7 +92,7 @@ void ofApp::draw(){
 	if(showGui)
 		gui.draw();
 	//ofSetColor(255, 255, 255, 127);
-	buffer.draw(0, 0);
+	//buffer.draw(0, 0);
 }
 
 //--------------------------------------------------------------

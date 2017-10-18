@@ -183,6 +183,7 @@
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxSliderGroup.cpp" />
     <ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp" />
     <ClCompile Include="..\..\..\addons\ofxNestedFileLoader\src\ofxNestedFileLoader.cpp" />
+    <ClCompile Include="src\ProbabilityDrawer.cpp" />
     <ClCompile Include="src\Stepper.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -198,6 +199,7 @@
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxSliderGroup.h" />
     <ClInclude Include="..\..\..\addons\ofxGui\src\ofxToggle.h" />
     <ClInclude Include="..\..\..\addons\ofxNestedFileLoader\src\ofxNestedFileLoader.h" />
+    <ClInclude Include="src\ProbabilityDrawer.h" />
     <ClInclude Include="src\Stepper.h" />
   </ItemGroup>
   <ItemGroup>

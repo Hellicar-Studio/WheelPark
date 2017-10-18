@@ -40,6 +40,9 @@
     <ClCompile Include="src\Stepper.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\ProbabilityDrawer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -111,6 +114,9 @@
       <Filter>addons\ofxNestedFileLoader\src</Filter>
     </ClInclude>
     <ClInclude Include="src\Stepper.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ProbabilityDrawer.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
