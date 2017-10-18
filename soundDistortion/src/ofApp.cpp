@@ -92,10 +92,13 @@ void ofApp::draw(){
 
 	//stepper.draw();
 
-	if(showGui)
+	//buffer.draw(0, 0);
+
+	if (showGui) {
 		gui.draw();
+		wave.drawGui();
+	}
 	//ofSetColor(255, 255, 255, 127);
-	buffer.draw(0, 0);
 }
 
 //--------------------------------------------------------------

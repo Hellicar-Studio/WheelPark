@@ -24,3 +24,8 @@ void ProbabilityDrawer::clearBuffer() {
 	buffer->clear();
 	buffer->end();
 }
+
+void ProbabilityDrawer::setupGui() {
+	gui.setup();
+	gui.setPosition(100, 100);
+}
