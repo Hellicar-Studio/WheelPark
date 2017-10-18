@@ -3,7 +3,7 @@
 #include "ofMain.h"
 #include "ofxAutoReloadedShader.h"
 #include "ofxGui.h"
-#include "Stepper.h"
+#include "ProbDrawersList.h"
 
 class ofApp : public ofBaseApp{
 
@@ -32,6 +32,7 @@ class ofApp : public ofBaseApp{
 		ofImage probabilityFilter;
 
 		Stepper stepper;
+		SineWave wave;
 
 		ofxPanel gui;
 

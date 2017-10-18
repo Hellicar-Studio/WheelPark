@@ -43,6 +43,9 @@
     <ClCompile Include="src\ProbabilityDrawer.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\SineWave.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -117,6 +120,12 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\ProbabilityDrawer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SineWave.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ProbDrawersList.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

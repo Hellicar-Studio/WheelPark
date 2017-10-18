@@ -44,6 +44,9 @@ void ofApp::setup(){
 	stepper.setBuffer(&buffer);
 	stepper.setup(1920, 1080);
 
+	wave.setBuffer(&buffer);
+	wave.loadShader("SineWave");
+
 	//ofHideCursor();
 }
 
