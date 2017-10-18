@@ -222,6 +222,8 @@
     <None Include="bin\data\shaders\area.vert" />
     <None Include="bin\data\shaders\glitch.frag" />
     <None Include="bin\data\shaders\glitch.vert" />
+    <None Include="bin\data\shaders\sineWave.frag" />
+    <None Include="bin\data\shaders\sineWave.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ProjectExtensions>

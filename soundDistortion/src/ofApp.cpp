@@ -4,7 +4,6 @@
 void ofApp::setup(){
 	glitchShader.load("Shaders/glitch");
 	areaShader.load("shaders/area");
-	verticalBlur.load("shaders/verticalBlur");
 
 	img.load("ToyotaImage.png");
 	probabilityFilter.load("probGradientLine.jpg");
@@ -45,7 +44,7 @@ void ofApp::setup(){
 	stepper.setup(1920, 1080);
 
 	wave.setBuffer(&buffer);
-	wave.loadShader("SineWave");
+	wave.loadShader("shaders/sineWave");
 
 	//ofHideCursor();
 }
@@ -57,7 +56,8 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	stepper.drawToBuffer();
+	wave.drawToBuffer();
+	//stepper.drawToBuffer();
 
 	//buffer.begin();
 	////verticalBlur.begin();
@@ -95,7 +95,7 @@ void ofApp::draw(){
 	if(showGui)
 		gui.draw();
 	//ofSetColor(255, 255, 255, 127);
-	//buffer.draw(0, 0);
+	buffer.draw(0, 0);
 }
 
 //--------------------------------------------------------------

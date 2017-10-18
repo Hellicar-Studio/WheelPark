@@ -145,5 +145,11 @@
     <None Include="bin\data\shaders\area.vert">
       <Filter>data\shaders</Filter>
     </None>
+    <None Include="bin\data\shaders\sineWave.frag">
+      <Filter>data\shaders</Filter>
+    </None>
+    <None Include="bin\data\shaders\sineWave.vert">
+      <Filter>data\shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
