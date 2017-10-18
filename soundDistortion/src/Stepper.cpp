@@ -3,7 +3,7 @@
 #define NUM_RECTANGLES 12
 
 Stepper::Stepper() {
-	//buffer.allocate(w, h);
+	ProbabilityDrawer();
 }
 
 int Stepper::getActiveRect(float x) {
@@ -15,7 +15,7 @@ int Stepper::getActiveRect(float x) {
 }
 
 void Stepper::setup(int w, int h) {
-	buffer.allocate(w, h);
+	buffer->allocate(w, h);
 	for (int i = 0; i < NUM_RECTANGLES; i++) {
 		ofRectangle rect;
 		rect.width = ofGetWidth() / NUM_RECTANGLES;
@@ -40,22 +40,12 @@ void Stepper::update() {
 
 void Stepper::draw() {
 	ofPushStyle();
+	ofSetColor(0);
+	ofDrawRectangle(0, 0, buffer->getWidth(), buffer->getHeight());
 	ofSetRectMode(OF_RECTMODE_CENTER);
 	ofSetColor(127, 0, 0, 255);
 	for (int i = 0; i < rectangles.size(); i++) {
 		ofDrawRectangle(rectangles[i]);
 	}
 	ofPopStyle();
-}
-
-void Stepper::drawToBuffer() {
-	buffer.begin();
-	ofSetColor(0);
-	ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
-	draw();
-	buffer.end();
-}
-
-void Stepper::drawBuffer() {
-	buffer.draw(0, 0);
 }
