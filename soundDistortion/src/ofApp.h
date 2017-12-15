@@ -26,7 +26,9 @@ class ofApp : public ofBaseApp{
 		ofxAutoReloadedShader glitchShader;
 		ofxAutoReloadedShader areaShader;
 		ofFbo buffer;
-		ofImage img;
+		ofFbo imgBuffer;
+		vector<ofImage> images;
+		ofImage img, overlayImg, logoImg;
 		ofImage probabilityFilter;
 
 		ofxPanel gui;
@@ -39,6 +41,8 @@ class ofApp : public ofBaseApp{
 		ofParameter<ofVec4f> subGrid; 
 		ofParameter<ofVec4f> blockSize;
 		ofParameter<float> width;
+		ofParameter<float> glitchMaskAmount;
+		ofParameter<float> percentage;
 
 		ofParameterGroup aberrationGroup;
 		ofParameter<float> aberrationStrength;

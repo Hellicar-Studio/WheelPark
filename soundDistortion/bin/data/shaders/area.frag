@@ -17,7 +17,7 @@ void main() {
 
 	float dist = distance(pos, mousePos);
 
-	float prob = smoothstep(800, 0.0, dist);
+	float prob = smoothstep(600, 0.0, dist);
 
     gl_FragColor = vec4(prob, 0.0, 0.0, 1.0);
 }
